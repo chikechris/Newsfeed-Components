@@ -119,7 +119,7 @@ data.forEach(data => {
 });
 
 function createArticle(title, date, p1, p2, p3) {
-  // define new elements
+  // defining new elements
   const article = document.createElement("div");
   const articleTitle = document.createElement("h2");
   const articleDate = document.createElement("p");
@@ -128,7 +128,7 @@ function createArticle(title, date, p1, p2, p3) {
   const para3 = document.createElement("p");
   const expandButton = document.createElement("span");
 
-  // set up structure of elements
+  // setting up structure of elements
   article.appendChild(articleTitle);
   article.appendChild(articleDate);
   article.appendChild(para1);
@@ -136,12 +136,12 @@ function createArticle(title, date, p1, p2, p3) {
   article.appendChild(para3);
   article.appendChild(expandButton);
 
-  // set class names
+  // setting  class names
   article.classList.add("article");
   articleDate.classList.add("date");
   expandButton.classList.add("expandButton");
 
-  // set text content
+  // setting text content
   articleTitle.textContent = title;
   articleDate.textContent = date;
   para1.textContent = p1;
@@ -149,7 +149,7 @@ function createArticle(title, date, p1, p2, p3) {
   para3.textContent = p3;
   expandButton.textContent = "Expand";
 
-  // add event listener to expand button
+  // adding event listener to expand button
   expandButton.addEventListener("click", event => {
     article.classList.toggle("article-open");
     if (article.classList.contains("article-open")) {
