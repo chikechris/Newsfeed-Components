@@ -104,11 +104,56 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
   */
 
+function articleComponent(articleTt, date, fPg, sPg, tPg) {
+  // defining new elements
+
+  const articleDiv = document.createElement("div");
+  const titleH2 = document.createElement("h2", articleTt);
+  const dateArticle = document.createElement("p", date);
+  const firstPg = document.createElement("p", fPg);
+  const secondPg = document.createElement("p", sPg);
+  const thirdPg = document.createElement("p", tPg);
+  const expandButton = document.createElement("span");
+
+  // setting up structure of elements
+  articleDiv.appendChild(titleH2);
+  articleDiv.appendChild(dateArticle);
+  articleDiv.appendChild(firstPg);
+  articleDiv.appendChild(secondPg);
+  articleDiv.appendChild(thirdPg);
+  articleDiv.appendChild(expandButton);
+
+  // setting up  class names
+  articleDiv.classList.add("article");
+  dateArticle.classList.add("date");
+  expandButton.classList.add("expandButton");
+
+  //setting up text content
+  titleH2.textContent = articleTt;
+  dateArticle.textContent = date;
+  firstPg.textContent = fPg;
+  secondPg.textContent = sPg;
+  thirdPg.textContent = tPg;
+  expandButton.textContent = "Expand";
+
+  // adding event listener to expand button
+  expandButton.addEventListener("click", event => {
+    articleDiv.classList.toggle("article-open");
+    if (articleDiv.classList.contains("article-open")) {
+      expandButton.textContent = "Close";
+    } else {
+      expandButton.textContent = "Expand";
+    }
+  });
+
+  return articleDiv;
+}
+
 const articles = document.querySelector(".articles");
 
 data.forEach(data => {
   articles.appendChild(
-    createArticle(
+    articleComponent(
       data.title,
       data.date,
       data.firstParagraph,
@@ -117,47 +162,3 @@ data.forEach(data => {
     )
   );
 });
-
-function createArticle(title, date, p1, p2, p3) {
-  // defining new elements
-  const article = document.createElement("div");
-  const articleTitle = document.createElement("h2");
-  const articleDate = document.createElement("p");
-  const para1 = document.createElement("p");
-  const para2 = document.createElement("p");
-  const para3 = document.createElement("p");
-  const expandButton = document.createElement("span");
-
-  // setting up structure of elements
-  article.appendChild(articleTitle);
-  article.appendChild(articleDate);
-  article.appendChild(para1);
-  article.appendChild(para2);
-  article.appendChild(para3);
-  article.appendChild(expandButton);
-
-  // setting  class names
-  article.classList.add("article");
-  articleDate.classList.add("date");
-  expandButton.classList.add("expandButton");
-
-  // setting text content
-  articleTitle.textContent = title;
-  articleDate.textContent = date;
-  para1.textContent = p1;
-  para2.textContent = p2;
-  para3.textContent = p3;
-  expandButton.textContent = "Expand";
-
-  // adding event listener to expand button
-  expandButton.addEventListener("click", event => {
-    article.classList.toggle("article-open");
-    if (article.classList.contains("article-open")) {
-      expandButton.textContent = "Close";
-    } else {
-      expandButton.textContent = "Expand";
-    }
-  });
-
-  return article;
-}
